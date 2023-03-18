@@ -13,7 +13,7 @@ interface EventFormProps {
 }
 
 
-const EventForm: FC<EventFormProps> = (props) => {
+const EventForm: FC<EventFormProps> = ({guests, submit}) => {
     const [event, setEvent] = useState<IEvent>({
         author: "",
         date: "",
@@ -30,7 +30,7 @@ const EventForm: FC<EventFormProps> = (props) => {
         }
     }
     const submitForm = () => {
-        props.submit({...event,author: user.username})
+        submit({...event,author: user.username})
     }
     return (
         <Form onFinish={submitForm}>
@@ -60,7 +60,7 @@ const EventForm: FC<EventFormProps> = (props) => {
             <Select onChange={(guest: string) => {
                 setEvent({...event,guest})
             }}>
-                {props.guests.map(guest =>
+                {guests.map(guest =>
                 <Select.Option key={guest.username} value={guest.username}>
                     {guest.username}
                 </Select.Option>
