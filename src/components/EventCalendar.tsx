@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
-import {Badge, Calendar} from "antd";
+import { Calendar} from "antd";
 import {IEvent} from "../models/IEvent";
-import {Moment} from "momnet";
 import {formatDate} from "../utils/date";
 
 interface EventCalendarProps{

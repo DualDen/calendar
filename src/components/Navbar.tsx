@@ -6,28 +6,29 @@ import {RouteNames} from "../routes";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {AuthActionCreators} from "../store/reducers/auth/action-creators";
 import {useDispatch} from "react-redux";
+import MenuItem from "antd/es/menu/MenuItem";
 
 
 const Navbar: FC = () => {
     const navigate = useNavigate();
     const {isAuth,user} = useTypedSelector(state => state.auth)
     const dispatch: Dispatch<any> = useDispatch();
+
     return (
         <Header>
             <Row  justify={"end"}>
                 {isAuth
                 ?
                     <Menu theme={'dark'} mode={'horizontal'} selectable={false}>
-                        <div style={{color: "white"}}>{user.username}</div>
-                        <Menu.Item onClick={() => {
+                        <MenuItem key={1} onClick={() => {
                             dispatch(AuthActionCreators.logout());
-                        }} key={2}>Выйти</Menu.Item>
+                        }}>Выйти</MenuItem>
                     </Menu>
                 :
                     <Menu theme={'dark'} mode={'vertical'} selectable={false}>
-                        <Menu.Item onClick={() => {
+                        <MenuItem key={2} onClick={() => {
                             navigate(RouteNames.LOGIN)
-                        }} key={1}>Логин</Menu.Item>
+                        }}>Логин</MenuItem>
                     </Menu>
                 }
 

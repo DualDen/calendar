@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Routes, Route, redirect, Navigate} from "react-router-dom";
+import {Routes, Route, Navigate} from "react-router-dom";
 import {privateRoutes, publicRoutes, RouteNames} from "../routes";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 

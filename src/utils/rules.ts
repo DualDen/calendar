@@ -8,7 +8,6 @@ export const rules = {
     }),
     isDateAfter: (message: string) => () => ({
         validator(_:any, value: Moment) {
-            // @ts-ignore
             if(value.isSameOrAfter(moment())) {
                 return Promise.resolve();
             }

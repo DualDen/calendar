@@ -1,11 +1,11 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Button, DatePicker, Form, Input, Row, Select} from "antd";
 import {rules} from "../utils/rules";
 import {IUser} from "../models/IUser";
 import {IEvent} from "../models/IEvent";
-import {Moment} from "momnet";
 import {formatDate} from "../utils/date";
 import {useTypedSelector} from "../hooks/useTypedSelector";
+import {Dayjs} from "dayjs";
 
 interface EventFormProps {
     guests: IUser[],
@@ -20,9 +20,11 @@ const EventForm: FC<EventFormProps> = (props) => {
         description: "",
         guest: "",
     } as IEvent);
-    const {user} = useTypedSelector(state => state.auth)
-    // @ts-ignore
-    const selectDate = (date: dayjs | null) => {
+    const {user} = useTypedSelector(state => state.auth);
+    useEffect(() => {
+        console.log(event)
+    },[event])
+    const selectDate = (date: Dayjs | null ) => {
         if (date) {
             setEvent({...event, date: formatDate(date?.toDate())})
         }
